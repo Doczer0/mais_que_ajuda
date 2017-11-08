@@ -1,0 +1,34 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="develop.maikeajuda.View.CategoryFragment">
+
+        <TextView
+            android:id="@+id/text_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="60dp"
+            android:labelFor="@+id/gridView_exercises"
+            android:text="@string/category_screen"
+            android:textAlignment="center"
+            android:textSize="36sp"/>
+
+        <GridView
+            android:id="@+id/grid_categories"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:numColumns="2"
+            android:horizontalSpacing="25dp"
+            android:verticalSpacing="25dp"
+            tools:listitem="@layout/item_category" />
+
+</LinearLayout>

@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">Maike Ajuda</string>
+    <string name="app_description">Maike Ajuda</string>
+    <string name="login_screen">Login</string>
+    <string name="register_screen">Cadastro</string>
+    <string name="category_screen">Categorias</string>
+    <string name="exercises_screen">Exercicios</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="btn_signIn">Entrar</string>
+    <string name="btn_signUp">Criar Conta</string>
+    <string name="btn_register">Cadastrar</string>
+    <string name="btn_finish">Tirar Foto</string>
+    <string name="button_logout">Sair</string>
+
+    <string name="text_login">Acesse sua conta</string>
+    <string name="text_username">Nome de Usuário</string>
+    <string name="text_matriculation">Matrícula</string>
+    <string name="text_email">Endereço de email</string>
+    <string name="text_passwd">Senha</string>
+    <string name="text_confirm_passwd">Confirmar Senha</string>
+    <string name="text_category">Categorias</string>
+    <string name="text_exercises">Exercicios</string>
+    <string name="text_step">Passo</string>
+
+    <string name="hint_matriculation">Número de matrícula</string>
+    <string name="hint_name">Nome Completo</string>
+    <string name="hint_email">Endereço de e-mail</string>
+    <string name="hint_passwd">Senha</string>
+    <string name="hint_photo">Nome da Foto</string>
+
+    <string name="login_link">Já possui uma conta? Acesse sua conta.</string>
+    <string name="register_link">Ainda não possui conta? Crie uma já agora!</string>
+
+    <string name="demo_text_title">TITULO</string>
+    <string name="demo_text_description">DESCRICAO</string>
+
+    <string name="contentDescription_logo">Logo</string>
+    <string name="contentDescription_icon">Icone</string>
+    <string name="contentDescription_photo">Photo</string>
+
+    <string name="text_test">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lacinia gravida velit at malesuada. Suspendisse ut commodo erat. Praesent tempus nunc lacus, a malesuada libero malesuada eu. Donec finibus lorem blandit, laoreet nunc ac, cursus ligula. Sed semper dui felis, a auctor nulla ullamcorper non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean congue, ex quis consequat sollicitudin, eros elit gravida eros, nec iaculis mauris risus id nisi. Praesent maximus eros nisl, ut pulvinar nisl placerat at. Fusce pulvinar augue vel congue finibus. Nulla consequat arcu vel nibh suscipit, sit amet dapibus diam placerat. Proin scelerisque nulla varius, aliquam augue ac, molestie nibh. Proin ut pellentesque massa. Praesent leo ligula, tincidunt ac metus in, dapibus pretium tellus. Aenean sollicitudin, quam quis pretium auctor, diam erat ultrices elit, sed eleifend libero elit vel sem. Aliquam vestibulum lacus ex. Suspendisse imperdiet, sapien vel iaculis euismod, lorem diam dapibus dui, eget tincidunt dolor lorem eu erat.
+    </string>
+
+    <string name="title_activity_settings">SplashActivity</string>
+    <string name="title_media">SplashActivity</string>
+    <string name="title_w">SplashActivity</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_gallery">Galeria</string>
+    <string name="title_logout">Sair</string>
+
+    <string name="title_activity_view">ViewActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="title_activity_camera">CameraActivity</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+</resources>

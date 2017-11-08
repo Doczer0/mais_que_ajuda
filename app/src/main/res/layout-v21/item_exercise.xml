@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:background="@drawable/background_rounded_border"
+    android:minHeight="120dp"
+    android:maxHeight="140dp"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp"
+    android:gravity="center"
+    android:elevation="8dp">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/img_dente"
+        android:contentDescription="@string/contentDescription_icon" />
+
+    <TextView
+        android:id="@+id/gridView2_item_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/demo_text_title"
+        android:textAlignment="center"
+        android:textColor="@color/colorTertiaryText"
+        android:textSize="18sp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

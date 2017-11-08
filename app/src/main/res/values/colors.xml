@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2196f3</color>
+    <color name="colorPrimaryDark">#1976d2</color>
+    <color name="colorPrimaryLight">#bbdefb</color>
+    <color name="colorAccent">#03a9f4</color>
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorSecondaryText">#757575</color>
+    <color name="colorTertiaryText">#ffffff</color>
+    <color name="colorIcon">#ffffff</color>
+    <color name="colorButtons">#FFFFFF</color>
+    <color name="colorCamera">#000000</color>
+
+    <color name="input_register">#888888</color>
+    <color name="input_register_bg">#FFFFFF</color>
+    <color name="input_register_hint">#5e6266</color>
+
+    <color name="black_overlay">#000000</color>
+</resources>

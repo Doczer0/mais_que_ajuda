@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="develop.maikeajuda.View.Camera2Activity">
+
+    <com.wonderkiln.camerakit.CameraView
+        xmlns:camerakit="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/camera_preview2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        camerakit:ckFacing="back"
+        camerakit:ckFlash="off"
+        camerakit:ckMethod="still"
+        camerakit:ckPermissions="strict"
+        camerakit:ckJpegQuality="100" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true">
+
+        <ImageButton
+            android:id="@+id/cam2_button_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/circle_button"
+            android:padding="10dp"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ic_back"
+            android:contentDescription="@string/contentDescription_icon"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp" />
+
+        <ImageButton
+            android:id="@+id/cam2_button_photo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/circle_button"
+            android:padding="10dp"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ic_photo"
+            android:contentDescription="@string/contentDescription_icon" />
+
+        <ImageButton
+            android:id="@+id/cam2_button_filter"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/circle_button"
+            android:padding="10dp"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ic_filter_on"
+            android:contentDescription="@string/contentDescription_icon"
+            android:layout_marginRight="20dp"
+            android:layout_alignParentRight="true" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

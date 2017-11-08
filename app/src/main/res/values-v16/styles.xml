@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="rounded_button">
+        <item name="android:background">@drawable/background_rounded_button</item>
+        <item name="android:fontFamily">@font/source_sans_pro</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:typeface">normal</item>
+        <item name="android:textColor">@color/colorTertiaryText</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+    </style>
+
+    <style name="edit_text">
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/source_sans_pro</item>
+        <item name="android:typeface">normal</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:textColorHint">@color/colorSecondaryText</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+    </style>
+</resources>

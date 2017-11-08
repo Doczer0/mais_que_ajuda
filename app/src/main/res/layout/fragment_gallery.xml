@@ -1,0 +1,52 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="develop.maikeajuda.View.GalleryFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_gallery_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="60dp"
+            android:labelFor="@+id/gridView_exercises"
+            android:text="@string/title_gallery"
+            android:textAlignment="center"
+            android:textSize="36sp" />
+
+        <GridView
+            android:id="@+id/gridView_gallery"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:numColumns="2"
+            android:horizontalSpacing="5dp"
+            android:verticalSpacing="5dp"
+            tools:listitem="@layout/item_gallery"
+            android:visibility="visible">
+
+        </GridView>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_gallery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:text="@string/demo_text_title"
+        android:textColor="@color/colorPrimaryText"
+        android:visibility="gone" />
+
+</RelativeLayout>
