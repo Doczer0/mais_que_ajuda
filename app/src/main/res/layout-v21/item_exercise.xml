@@ -21,16 +21,16 @@
         android:contentDescription="@string/contentDescription_icon" />
 
     <TextView
-        android:id="@+id/gridView2_item_title"
+        android:id="@+id/exercise_item_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:text="@string/demo_text_title"
         android:textAlignment="center"
         android:textColor="@color/colorTertiaryText"
-        android:textSize="18sp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:textSize="18sp" />
 
 </RelativeLayout>

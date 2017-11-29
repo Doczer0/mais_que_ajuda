@@ -2,6 +2,7 @@ package develop.maikeajuda.Application;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Environment;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
@@ -10,6 +11,10 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+
+import java.io.File;
+
+import static develop.maikeajuda.Application.AppConfig.IMAGE_DIRECTORY_NAME;
 
 
 public class ApplicationControler extends Application {
@@ -28,6 +33,10 @@ public class ApplicationControler extends Application {
         WindowManager windowManager = (WindowManager)getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         windowManager.getDefaultDisplay().getMetrics(metrics);
         DEVICE_DENSITY_DPI = metrics.densityDpi;
+        File file = new File(Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY_NAME);
+        if(!file.exists()) {
+            file.mkdir();
+        }
     }
 
     public static synchronized ApplicationControler getInstance() {

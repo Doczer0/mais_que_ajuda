@@ -37,6 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorSecondaryText"
+        android:backgroundTint="@color/ns_accent"
         android:hint="@string/hint_passwd"
         android:inputType="textPassword" />
 
@@ -53,10 +54,9 @@
         android:id="@+id/text_new_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:fontFamily="@font/source_sans_pro"
         android:text="@string/register_link"
         android:textAlignment="center"
-        android:textSize="16sp" />
+        android:textSize="12sp" />
 
 </LinearLayout>

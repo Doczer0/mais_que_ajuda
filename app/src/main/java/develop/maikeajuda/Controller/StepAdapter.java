@@ -2,11 +2,14 @@ package develop.maikeajuda.Controller;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -48,9 +51,14 @@ public class StepAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         LinearLayout linearLayout = new LinearLayout(context);
 
-        Step exerciseStage = exerciseStepsList.get(position);
+        linearLayout.setBackgroundColor(Color.WHITE);
 
-        Typeface font = Typeface.createFromAsset(activity.getAssets(),"fonts/SourceSansPro.ttf");
+        Step exerciseStage = exerciseStepsList.get(position);
+        String stepType = exerciseStage.getStepType();
+
+        Typeface font = Typeface.createFromAsset(activity.getAssets(),"fonts/SourceSansProLight.ttf");
+        Typeface font2 = Typeface.createFromAsset(activity.getAssets(),"fonts/SourceSansPro.ttf");
+
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams
                 (ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
@@ -76,11 +84,12 @@ public class StepAdapter extends PagerAdapter {
         //layoutContent.weight=0;
         layoutContent.setMargins(20,30,20,20);
 
-        if(position%2!=0){
+        if(stepType.equals("text")){
             TextView textViewTitle = new TextView(context);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 textViewTitle.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             }
+
             textViewTitle.setText(exerciseStage.getStepTitle());
             textViewTitle.setTypeface(font);
             textViewTitle.setTextColor(activity.getResources().getColor(R.color.colorPrimaryText));
@@ -89,11 +98,12 @@ public class StepAdapter extends PagerAdapter {
 
             linearLayout.addView(textViewTitle);
 
+            /*
             DocumentView documentView = new DocumentView(context, DocumentView.PLAIN_TEXT);
             documentView.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
             documentView.getDocumentLayoutParams().setTextColor(R.color.colorPrimaryText);
             documentView.getDocumentLayoutParams().setTextSize(20);
-            documentView.getDocumentLayoutParams().setTextTypeface(font);
+            documentView.getDocumentLayoutParams().setTextTypeface(font2);
             documentView.getDocumentLayoutParams().setHyphen("-");
             documentView.getDocumentLayoutParams().setInsetPaddingLeft(10);
             documentView.getDocumentLayoutParams().setInsetPaddingTop(10);
@@ -105,19 +115,50 @@ public class StepAdapter extends PagerAdapter {
             }
             documentView.setText(exerciseStage.getStepContent());
             documentView.setLayoutParams(layoutContent);
+            */
 
-            linearLayout.addView(documentView);
+            String content = exerciseStage.getStepContent();
+            String pish = "<html><head><style type=\"text/css\">@font-face {font-family: MyFont;src: url(\"file:///android_asset/fonts/SourceSansProLight.ttf\")}body {font-family: MyFont;font-size: medium;text-align: justify;}</style></head><body>";
+            String pas = "</body></html>";
+            String text = pish + content + pas;
+            WebView webView = new WebView(context);
+            webView.loadData(text, "text/html; charset=utf-8",  "utf-8");
 
-        }else{
+            webView.setLayoutParams(layoutContent);
+
+            linearLayout.addView(webView);
+
+        } else if(stepType.equals("image")) {
             ImageView imageViewStep = new ImageView(context);
             imageViewStep.setPadding(0,0,0,0);
-            imageViewStep.setScaleType(ImageView.ScaleType.FIT_XY);
+            imageViewStep.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+            Picasso.with(context).load(exerciseStage.getStepContent())
+                    .error(R.drawable.img_error).into(imageViewStep);
+            imageViewStep.setLayoutParams(layoutImage);
+
+            linearLayout.addView(imageViewStep);
+        } else if(stepType.equals("comparison")) {
+            ImageView imageViewStep = new ImageView(context);
+            imageViewStep.setPadding(0,0,0,0);
+            imageViewStep.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
             Picasso.with(context).load(exerciseStage.getStepContent())
                     .error(R.drawable.img_error).into(imageViewStep);
             imageViewStep.setLayoutParams(layoutImage);
 
             linearLayout.addView(imageViewStep);
         }
+        else {
+            ImageView imageViewStep = new ImageView(context);
+            imageViewStep.setPadding(0,0,0,0);
+            imageViewStep.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+            Picasso.with(context).load(R.drawable.img_error).into(imageViewStep);
+            imageViewStep.setLayoutParams(layoutImage);
+
+            linearLayout.addView(imageViewStep);
+        }
+
+
+
         return (linearLayout);
     }
 

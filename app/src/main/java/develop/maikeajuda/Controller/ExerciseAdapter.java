@@ -18,12 +18,10 @@ import develop.maikeajuda.R;
 public class ExerciseAdapter extends BaseAdapter {
     private final List<Exercise> itemList;
     private final Activity activity;
-    private Typeface typeface;
 
-    public ExerciseAdapter(List<Exercise> itemList, Activity activity, Typeface typeface) {
+    public ExerciseAdapter(List<Exercise> itemList, Activity activity) {
         this.itemList = itemList;
         this.activity = activity;
-        this.typeface = typeface;
     }
 
     @Override
@@ -46,9 +44,10 @@ public class ExerciseAdapter extends BaseAdapter {
         View view = activity.getLayoutInflater().inflate(R.layout.item_exercise,parent,false);
         Exercise item = itemList.get(position);
 
-        TextView exercise = (TextView) view.findViewById(R.id.gridView2_item_title);
+        TextView exercise = view.findViewById(R.id.exercise_item_title);
+        Typeface font = Typeface.createFromAsset(activity.getAssets(),"fonts/SourceSansPro.ttf");
 
-        exercise.setTypeface(typeface);
+        exercise.setTypeface(font);
         exercise.setText(item.getExerciseName());
 
         if(item.getExerciseName().length()>15){

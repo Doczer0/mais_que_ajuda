@@ -48,14 +48,10 @@ public class CategoryAdapter extends BaseAdapter {
         Category category = categoriesList.get(position);
 
         TextView title = view.findViewById(R.id.category_item_title);
-        TextView description = view.findViewById(R.id.category_item_description);
-        String texto = (String) activity.getText(R.string.text_test);
         Typeface font = Typeface.createFromAsset(activity.getAssets(),"fonts/SourceSansPro.ttf");
 
         title.setTypeface(font);
         title.setText(category.getCategoryName());
-        description.setTypeface(font);
-        description.setText(texto);
 
         return view;
     }

@@ -16,22 +16,16 @@
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:contentDescription="@string/contentDescription_logo"
+        android:layout_marginBottom="15dp"
         android:scaleType="centerInside"
         app:srcCompat="@drawable/img_logo" />
 
-    <TextView
-        android:id="@+id/text_login_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="@string/text_login"
-        android:textAlignment="center"
-        android:textSize="26sp" />
 
     <EditText android:id="@+id/editText_email"
         style="@style/edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorSecondaryText"
         android:hint="@string/hint_email"
         android:inputType="textEmailAddress" />
 
@@ -39,23 +33,26 @@
         style="@style/edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorSecondaryText"
         android:hint="@string/hint_passwd"
         android:inputType="textPassword" />
 
-    <Button android:id="@+id/btnLogin"
+    <Button
+        android:id="@+id/btnLogin"
         style="@style/rounded_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/btn_signIn" />
+        android:text="@string/btn_signIn"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/text_new_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+
         android:text="@string/register_link"
         android:textAlignment="center"
-        android:textSize="16sp" />
+        android:textSize="12sp" />
 
 </LinearLayout>

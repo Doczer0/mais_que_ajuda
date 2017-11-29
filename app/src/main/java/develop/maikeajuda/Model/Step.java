@@ -8,6 +8,14 @@ public class Step {
     private int exerciseId;
     private String stepTitle;
     private String stepContent;
+    private String stepType;
+
+    public Step(int exerciseId, String stepTitle, String stepContent, String stepType) {
+        this.exerciseId = exerciseId;
+        this.stepTitle = stepTitle;
+        this.stepContent = stepContent;
+        this.stepType = stepType;
+    }
 
     public Step(int exerciseId, String stepTitle, String stepContent) {
         this.exerciseId = exerciseId;
@@ -37,6 +45,14 @@ public class Step {
 
     public void setStepContent(String stepContent) {
         this.stepContent = stepContent;
+    }
+
+    public String getStepType() {
+        return stepType;
+    }
+
+    public void setStepType(String stepType) {
+        this.stepType = stepType;
     }
 
     @Override

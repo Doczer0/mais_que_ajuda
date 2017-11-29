@@ -1,12 +1,16 @@
 package develop.maikeajuda.Controller;
 
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -38,8 +42,9 @@ public class GalleryViewAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        View view = inflater.inflate(R.layout.view_image, container, false);
+        final View view = inflater.inflate(R.layout.view_image, container, false);
         Image picture = pictures.get(position);
+
 
         TextView imageTitle = view.findViewById(R.id.image_view_title);
         TextView imageData = view.findViewById(R.id.image_view_date);
@@ -49,6 +54,21 @@ public class GalleryViewAdapter extends PagerAdapter {
         imageData.setText(""+picture.getData());
 
         imageView.setImageBitmap(picture.getPicture());
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*
+                Toast.makeText(view.getContext(),"Teste",Toast.LENGTH_SHORT).show();
+                LinearLayout galleryItemInfo = view.findViewById(R.id.content);
+                float y = galleryItemInfo.getY();
+                float y2 = y + 120;
+                ObjectAnimator animation = ObjectAnimator.ofFloat(galleryItemInfo, "y", y, y2);
+                animation.setDuration(2000);
+                animation.start();
+                */
+            }
+        });
 
         container.addView(view);
 

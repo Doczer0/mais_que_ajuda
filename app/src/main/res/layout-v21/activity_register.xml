@@ -33,33 +33,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_email"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:backgroundTint="@color/ns_accent" />
 
     <EditText android:id="@+id/matriculation"
         style="@style/edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_matriculation"
-        android:inputType="textCapWords" />
+        android:inputType="textCapWords"
+        android:backgroundTint="@color/ns_accent" />
 
     <EditText android:id="@+id/password"
         style="@style/edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_passwd"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:backgroundTint="@color/ns_accent" />
 
-    <Button android:id="@+id/btnRegister"
+    <Button
+        android:id="@+id/btnRegister"
         style="@style/rounded_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_register" />
+        android:text="@string/btn_register"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/linkToLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:text="@string/login_link"
         android:textAlignment="center"
         android:textSize="14sp" />

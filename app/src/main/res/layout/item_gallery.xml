@@ -12,4 +12,5 @@
         android:maxWidth="180dp"
         android:scaleType="centerCrop"
         android:src="@drawable/img_logo" />
+
 </RelativeLayout>

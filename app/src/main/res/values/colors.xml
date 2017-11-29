@@ -11,7 +11,9 @@
     <color name="colorButtons">#FFFFFF</color>
     <color name="colorCamera">#000000</color>
 
+    <color name="ns_accent">#cacaca</color>
     <color name="input_register">#888888</color>
+    <color name="white">#FFFFFF</color>
     <color name="input_register_bg">#FFFFFF</color>
     <color name="input_register_hint">#5e6266</color>
 

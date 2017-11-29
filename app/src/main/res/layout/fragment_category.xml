@@ -11,11 +11,12 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="40dp"
             android:labelFor="@+id/gridView_exercises"
             android:text="@string/category_screen"
+            android:textColor="@color/colorCamera"
             android:textAlignment="center"
-            android:textSize="36sp"/>
+            android:textSize="36sp" />
 
         <GridView
             android:id="@+id/grid_categories"
@@ -24,7 +25,7 @@
             android:layout_marginBottom="20dp"
             android:layout_marginEnd="25dp"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
             android:gravity="center"
             android:numColumns="2"
             android:horizontalSpacing="25dp"
