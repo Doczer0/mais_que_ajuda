@@ -45,20 +45,19 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         session = new SessionManager(getApplicationContext());
-        Typeface font = Typeface.createFromAsset(getAssets(),"fonts/SourceSansPro.ttf");
+        Typeface font2 = Typeface.createFromAsset(getAssets(),"fonts/SourceSansPro.ttf");
 
         textEmail =  findViewById(R.id.editText_email);
         textPassword =  findViewById(R.id.editText_password);
         Button buttonLogin =  findViewById(R.id.btnLogin);
         TextView linkNewAccount =  findViewById(R.id.text_new_account);
-        TextView loginTitle = findViewById(R.id.text_login_title);
 
-        buttonLogin.setTypeface(font);
-        linkNewAccount.setTypeface(font);
-        loginTitle.setTypeface(font);
+        buttonLogin.setTypeface(font2);
+        linkNewAccount.setTypeface(font2);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
+
 
         if (session.isLoggedIn()) {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);

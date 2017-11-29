@@ -40,6 +40,7 @@ public class ExerciseActivity extends AppCompatActivity {
     private JSONArray exercisesResponse, comparisonResponse;
     private List<Step> stageList;
     private String exerciseName, image_url;
+    private StepAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,11 +115,9 @@ public class ExerciseActivity extends AppCompatActivity {
                                 int exerID = Integer.parseInt(object.getString("id_exercise"));
                                 String title = object.getString("step_name");
                                 String content = object.getString("step_content");
-                                String link = object.getString("image_step_url");
+                                String type = object.getString("step_type");
 
-                                Step stageContent = new Step(exerID,title,content);
-                                Step stageImage = new Step(exerID,title,link);
-                                stageList.add(stageImage);
+                                Step stageContent = new Step(exerID,title,content,type);
                                 stageList.add(stageContent);
                             }
                         } catch (JSONException e) {
@@ -126,7 +125,7 @@ public class ExerciseActivity extends AppCompatActivity {
                         }
                     }
                     //showToast(stageList.toString());
-                    StepAdapter adapter = new StepAdapter(stageList, getApplicationContext(), ExerciseActivity.this);
+                    adapter = new StepAdapter(stageList, getApplicationContext(), ExerciseActivity.this);
                     stepsViewPager.setAdapter(adapter);
                     hideDialog();
                 } catch (JSONException e) {
@@ -157,7 +156,7 @@ public class ExerciseActivity extends AppCompatActivity {
 
         progressDialog.setMessage("Carregando...");
         showDialog();
-        loadImageSample(id);
+        //loadImageSample(id);
     }
 
     private void loadImageSample(final int id){

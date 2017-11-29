@@ -1,6 +1,7 @@
 package develop.maikeajuda.View;
 
 
+import android.animation.ObjectAnimator;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
@@ -10,9 +11,12 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.text.DateFormat;
@@ -32,6 +36,7 @@ import static develop.maikeajuda.Application.AppConfig.IMAGE_DIRECTORY_NAME;
 public class ViewFragment extends DialogFragment {
     private GalleryViewAdapter adapter;
     private ViewPager galleryViewPager;
+    private LinearLayout galleryItemInfo;
     private ArrayList<Image> picturesData;
     private TextView pageCount;
 
@@ -54,6 +59,8 @@ public class ViewFragment extends DialogFragment {
         galleryViewPager.setPageTransformer(true, new DepthPageTransformer());
         adapter = new GalleryViewAdapter(getLayoutInflater(), loadGalleryView());
         galleryViewPager.setAdapter(adapter);
+
+        galleryItemInfo = view.findViewById(R.id.layout_content);
 
         galleryViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

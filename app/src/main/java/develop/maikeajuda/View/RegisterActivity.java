@@ -2,6 +2,7 @@ package develop.maikeajuda.View;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -44,12 +45,17 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        Typeface font2 = Typeface.createFromAsset(getAssets(),"fonts/SourceSansPro.ttf");
+
         edtMatriculation = findViewById(R.id.matriculation);
         edtName = findViewById(R.id.name);
         edtEmail = findViewById(R.id.email);
         edtPassword = findViewById(R.id.password);
         Button btnRegister = findViewById(R.id.btnRegister);
         TextView linkToLogin = findViewById(R.id.linkToLogin);
+
+        btnRegister.setTypeface(font2);
+        linkToLogin.setTypeface(font2);
 
         session = new SessionManager(getApplicationContext());
         progressDialog = new ProgressDialog(this);

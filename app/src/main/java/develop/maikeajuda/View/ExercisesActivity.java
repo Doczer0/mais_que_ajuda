@@ -35,12 +35,10 @@ import develop.maikeajuda.Model.Exercise;
 import develop.maikeajuda.R;
 
 public class ExercisesActivity extends AppCompatActivity {
-    private TextView textTitle;
     private GridView exerciseGridView;
     private ProgressDialog progressDialog;
     private JSONArray exercisesResponse;
     private List<Exercise> exercisesSimpleList = new ArrayList<>();
-    private String URL_EXERCISES = AppConfig.URL_EXERCISES;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +48,9 @@ public class ExercisesActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int id = intent.getIntExtra("category_id",1);
 
-        textTitle =  findViewById(R.id.text_category_exercises);
+        TextView textTitle = findViewById(R.id.text_category_exercises);
         exerciseGridView =  findViewById(R.id.gridView_exercises);
-        Typeface font = Typeface.createFromAsset(getAssets(),"fonts/SourceSansPro.ttf");
+        Typeface font = Typeface.createFromAsset(getAssets(),"fonts/SourceSansProLight.ttf");
 
         textTitle.setTypeface(font);
         textTitle.setText(intent.getStringExtra("category"));
@@ -79,7 +77,7 @@ public class ExercisesActivity extends AppCompatActivity {
     private void listAllExercises(final int id){
         String EXERCISES_TAG = "json_obj_exercises";
 
-        JsonObjectRequest exercisesRequest = new JsonObjectRequest(Request.Method.GET, URL_EXERCISES, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest exercisesRequest = new JsonObjectRequest(Request.Method.GET, AppConfig.URL_EXERCISES, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
@@ -102,8 +100,7 @@ public class ExercisesActivity extends AppCompatActivity {
                             showToast("Erro: "+e.toString());
                         }
                     }
-                    Typeface font = Typeface.createFromAsset(getAssets(),"fonts/SourceSansPro.ttf");
-                    ExerciseAdapter adapter = new ExerciseAdapter(exercisesSimpleList,ExercisesActivity.this, font);
+                    ExerciseAdapter adapter = new ExerciseAdapter(exercisesSimpleList,ExercisesActivity.this);
                     exerciseGridView.setAdapter(adapter);
                     hideDialog();
                 } catch (JSONException e) {
@@ -115,9 +112,30 @@ public class ExercisesActivity extends AppCompatActivity {
             }
         }, new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                showToast("Erro: "+error.toString());
+            public void onErrorResponse(VolleyError volleyError) {
+                String error = volleyError.toString();
+                switch(error) {
+                    case "com.android.volley.AuthFailureError":
+                        showToast("Erro: Não foi possivel autenticar solicitação");
+                        break;
+                    case "com.android.volley.NetworkError":
+                        showToast("Erro: Não foi possivel executar solicitação");
+                        break;
+                    case "com.android.volley.NoConnectionError":
+                        showToast("Erro: Não foi possivel estabelecer uma conexão com o servidor");
+                        break;
+                    case "com.android.volley.ParseError":
+                        showToast("Erro: Não foi possivel analizar a resposta do servidor");
+                        break;
+                    case "com.android.volley.ServerError":
+                        showToast("Erro: Erro no servidor");
+                        break;
+                    case "com.android.volley.TimeoutError":
+                        showToast("Erro: Sem conexão com o servidor");
+                        break;
+                }
                 hideDialog();
+                finish();
             }
         }){
             @Override

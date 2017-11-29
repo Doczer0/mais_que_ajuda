@@ -120,7 +120,6 @@ public class Camera2Activity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     @Override
@@ -163,13 +162,18 @@ public class Camera2Activity extends AppCompatActivity {
             String fileName = data_completa+".png";
 
             File file = new File(Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY_NAME);
-            file.mkdir();
-
-            File ifile = new File(Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY_NAME + fileName);
-            FileOutputStream outStream = new FileOutputStream(ifile);
-            pBitmap.compress(Bitmap.CompressFormat.PNG, 100, outStream);
-            outStream.close();
-
+            if(!file.mkdir()){
+                File ifile = new File(Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY_NAME + fileName);
+                FileOutputStream outStream = new FileOutputStream(ifile);
+                pBitmap.compress(Bitmap.CompressFormat.PNG, 100, outStream);
+                outStream.close();
+            } else {
+                file.mkdir();
+                File ifile = new File(Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY_NAME + fileName);
+                FileOutputStream outStream = new FileOutputStream(ifile);
+                pBitmap.compress(Bitmap.CompressFormat.PNG, 100, outStream);
+                outStream.close();
+            }
             //Toast.makeText(getApplicationContext(),"Foto salva com sucesso.", Toast.LENGTH_SHORT).show();
         }
         catch(Exception e){
@@ -177,5 +181,6 @@ public class Camera2Activity extends AppCompatActivity {
             Log.e(TAG, e.toString());
         }
     }
+
 
 }

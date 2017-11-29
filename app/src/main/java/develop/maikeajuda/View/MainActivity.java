@@ -1,5 +1,6 @@
 package develop.maikeajuda.View;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,13 +10,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import develop.maikeajuda.Application.SessionManager;
 import develop.maikeajuda.Model.Category;
 import develop.maikeajuda.R;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private TextView mTextMessage;
-
+    private SessionManager session;
 
 
     @Override
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        session = new SessionManager(getApplicationContext());
         mTextMessage = findViewById(R.id.message);
 
         setupBottomNavigation();
@@ -46,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
                         loadGalleryFragment();
                         return true;
                     case R.id.navigation_exit:
+                        session.logoutUser();
+                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(intent);
                         finish();
                         return true;
                 }
@@ -67,6 +73,4 @@ public class MainActivity extends AppCompatActivity {
         ft.replace(R.id.fragment_frame, fragment);
         ft.commit();
     }
-
-
 }

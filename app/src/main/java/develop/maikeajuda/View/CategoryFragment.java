@@ -3,6 +3,7 @@ package develop.maikeajuda.View;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -53,8 +55,12 @@ public class CategoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_category, container, false);
+        Typeface font = Typeface.createFromAsset(getActivity().getAssets(),"fonts/SourceSansProLight.ttf");
+
+        TextView categoryTitle = view.findViewById(R.id.text_category);
         categoryGridView = view.findViewById(R.id.grid_categories);
 
+        categoryTitle.setTypeface(font);
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setCancelable(false);
 
@@ -91,11 +97,12 @@ public class CategoryFragment extends Fragment {
                             category = new Category(
                                     Integer.parseInt(object.getString("id")),
                                     object.getString("category_name"),
-                                    object.getString("category_description"));
+                                    "");
                             categoriesSimpleList.add(category);
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            showToast("Erro: "+e.toString());
+                            //if(e.getMessage()){}
+                            showToast("Erro: "+e.getMessage());
                         }
                     }
                     CategoryAdapter adapter = new CategoryAdapter(categoriesSimpleList,getActivity(),getLayoutInflater());
@@ -110,9 +117,30 @@ public class CategoryFragment extends Fragment {
             }
         }, new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                showToast("Erro: "+error.toString());
+            public void onErrorResponse(VolleyError volleyError) {
+                String error = volleyError.toString();
+                switch(error) {
+                    case "com.android.volley.AuthFailureError":
+                        showToast("Erro: Não foi possivel autenticar solicitação");
+                        break;
+                    case "com.android.volley.NetworkError":
+                        showToast("Erro: Não foi possivel executar solicitação");
+                        break;
+                    case "com.android.volley.NoConnectionError":
+                        showToast("Erro: Não foi possivel estabelecer uma conexão com o servidor");
+                        break;
+                    case "com.android.volley.ParseError":
+                        showToast("Erro: Não foi possivel analizar a resposta do servidor");
+                        break;
+                    case "com.android.volley.ServerError":
+                        showToast("Erro: Erro no servidor");
+                        break;
+                    case "com.android.volley.TimeoutError":
+                        showToast("Erro: Sem conexão com o servidor");
+                        break;
+                }
                 hideDialog();
+                //getActivity().finish();
             }
         }){
             @Override
