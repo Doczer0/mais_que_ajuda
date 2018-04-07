@@ -1,10 +1,12 @@
 package develop.maikeajuda.Model;
 
+import android.support.annotation.NonNull;
+
 /**
  * Created by user on 01/11/2017.
  */
 
-public class Step {
+public class Step implements Comparable<Step> {
     private int exerciseId;
     private String stepTitle;
     private String stepContent;
@@ -62,5 +64,16 @@ public class Step {
                 ", stepTitle='" + stepTitle + '\'' +
                 ", stepContent='" + stepContent + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(@NonNull Step o) {
+        if (this.exerciseId < o.exerciseId) {
+            return -1;
+        }
+        if (this.exerciseId > o.exerciseId) {
+            return 1;
+        }
+        return 0;
     }
 }

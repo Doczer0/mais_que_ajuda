@@ -26,7 +26,12 @@ public class CameraFilter extends View {
         BitmapFactory.Options opt = new BitmapFactory.Options();
         opt.inDensity = ApplicationControler.DEVICE_DENSITY_DPI;
         opt.inScaled = true;
-        mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.img_logo, opt);
+        if(filterImage == null){
+            mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.img_logo, opt);
+        } else{
+            mBitmap = Bitmap.createBitmap(filterImage);
+        }
+        //
     }
 
     @Override

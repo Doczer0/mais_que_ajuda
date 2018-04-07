@@ -9,8 +9,9 @@ import android.view.WindowManager;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.io.File;
 
@@ -30,6 +31,8 @@ public class ApplicationControler extends Application {
         super.onCreate();
         appInstance = this;
         DisplayMetrics metrics = new DisplayMetrics();
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
+        ImageLoader.getInstance().init(config);
         WindowManager windowManager = (WindowManager)getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         windowManager.getDefaultDisplay().getMetrics(metrics);
         DEVICE_DENSITY_DPI = metrics.densityDpi;
