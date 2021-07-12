@@ -25,9 +25,7 @@ import android.widget.Toast;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.wonderkiln.camerakit.CameraKit;
-import com.wonderkiln.camerakit.CameraListener;
-import com.wonderkiln.camerakit.CameraView;
+import com.wonderkiln.camerakit.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -110,25 +108,34 @@ public class Camera2Activity extends AppCompatActivity {
             }
         });
 
-        cameraView.setCameraListener(new CameraListener() {
+        cameraView.addCameraKitListener(new CameraKitEventListener() {
             @Override
-            public void onPictureTaken(final byte[] jpeg) {
-                Thread timer = new Thread() {
-                    @Override
-                    public void run() {
-                        Bitmap bitmapPicture = BitmapFactory.decodeByteArray(jpeg, 0, jpeg.length);
-                        Bitmap bitmapFilter = cameraFilter.getDrawingCache();
+            public void onEvent(CameraKitEvent cameraKitEvent) {
 
-                        Bitmap bitmapPreview = bitmapOverlay(bitmapPicture,bitmapFilter, drawWidth, drawHeight);
-                        if(filterState){
-                            saveBitmap(bitmapPreview);
-                        }else {
-                            saveBitmap(bitmapPicture);
-                        }
-                        finish();
-                    }
-                };
-                timer.start();
+            }
+
+            @Override
+            public void onError(CameraKitError cameraKitError) {
+
+            }
+
+            @Override
+            public void onImage(CameraKitImage cameraKitImage) {
+                final byte[] jpeg = cameraKitImage.getJpeg();
+                Bitmap bitmapPicture = BitmapFactory.decodeByteArray(jpeg, 0, jpeg.length);
+                Bitmap bitmapFilter = cameraFilter.getDrawingCache();
+
+                Bitmap bitmapPreview = bitmapOverlay(bitmapPicture,bitmapFilter, drawWidth, drawHeight);
+                if(filterState){
+                    saveBitmap(bitmapPreview);
+                }else {
+                    saveBitmap(bitmapPicture);
+                }
+            }
+
+            @Override
+            public void onVideo(CameraKitVideo cameraKitVideo) {
+
             }
         });
 
