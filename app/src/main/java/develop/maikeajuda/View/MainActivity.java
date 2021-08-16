@@ -1,7 +1,9 @@
 package develop.maikeajuda.View;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Environment;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,6 +17,10 @@ import android.widget.TextView;
 import develop.maikeajuda.Application.SessionManager;
 import develop.maikeajuda.Model.Category;
 import develop.maikeajuda.R;
+
+import java.io.File;
+
+import static develop.maikeajuda.Application.AppConfig.IMAGE_DIRECTORY_NAME;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;

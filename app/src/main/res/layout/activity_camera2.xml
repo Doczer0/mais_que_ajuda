@@ -7,17 +7,16 @@
     android:orientation="vertical"
     tools:context="develop.maikeajuda.View.Camera2Activity">
 
-    <com.wonderkiln.camerakit.CameraView
-        xmlns:camerakit="http://schemas.android.com/apk/res-auto"
+   <com.camerakit.CameraKitView
         android:id="@+id/camera_preview2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        camerakit:ckFacing="back"
-        camerakit:ckFlash="off"
-        camerakit:ckMethod="still"
-        camerakit:ckPermissions="strict"
-        camerakit:ckJpegQuality="100" />
+        android:keepScreenOn="true"
+        app:camera_flash="auto"
+        app:camera_facing="back"
+        app:camera_focus="continuous"
+        app:camera_permissions="camera" />
 
     <RelativeLayout
         android:layout_width="match_parent"

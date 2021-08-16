@@ -7,20 +7,20 @@
     tools:context="develop.maikeajuda.View.ExercisesActivity">
 
     <TextView
-        android:id="@+id/text_category_exercises"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:labelFor="@+id/gridView_exercises"
-        android:text="@string/exercises_screen"
-        android:textAlignment="center"
-        android:textColor="@color/black_overlay"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/text_category_exercises"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:labelFor="@+id/gridView_exercises"
+            android:text="@string/exercises_screen"
+            android:textAlignment="center"
+            android:textColor="@color/black_overlay"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" android:gravity="center_horizontal"/>
 
     <GridView
         android:id="@+id/gridView_exercises"
