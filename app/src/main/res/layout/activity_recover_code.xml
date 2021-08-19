@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/txtView_recoverEmail"
+        android:layout_width="251dp"
+        android:layout_height="30dp"
+        android:gravity="center_horizontal"
+        android:text="TextView"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.453" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="322dp"
+        android:layout_height="24dp"
+        android:gravity="center_horizontal"
+        android:text="@string/forgetpassword_recoverCode"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.413" />
+
+    <EditText
+        android:id="@+id/editText_recoverPasswordCode"
+        style="@style/edit_text"
+        android:layout_width="43dp"
+        android:layout_height="39dp"
+        android:inputType="number"
+        android:gravity="center"
+        android:textColor="@color/colorSecondaryText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.217"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.502" />
+
+    <EditText
+        android:id="@+id/editText_recoverPasswordCode2"
+        style="@style/edit_text"
+        android:layout_width="43dp"
+        android:layout_height="39dp"
+        android:inputType="number"
+        android:gravity="center"
+        android:textColor="@color/colorSecondaryText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.35"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.502" />
+
+    <EditText
+        android:id="@+id/editText_recoverPasswordCode3"
+        style="@style/edit_text"
+        android:layout_width="43dp"
+        android:layout_height="39dp"
+        android:inputType="number"
+        android:gravity="center"
+        android:textColor="@color/colorSecondaryText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.502" />
+
+    <EditText
+        android:id="@+id/editText_recoverPasswordCode4"
+        style="@style/edit_text"
+        android:layout_width="44dp"
+        android:layout_height="40dp"
+        android:inputType="number"
+        android:gravity="center"
+        android:textColor="@color/colorSecondaryText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.618"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.503" />
+
+    <EditText
+        android:id="@+id/editText_recoverPasswordCode5"
+        style="@style/edit_text"
+        android:layout_width="43dp"
+        android:layout_height="39dp"
+        android:inputType="number"
+        android:gravity="center"
+        android:textColor="@color/colorSecondaryText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.502" />
+
+    <Button
+        android:id="@+id/btnSendCode"
+        style="@style/rounded_button"
+        android:layout_width="250dp"
+        android:layout_height="43dp"
+        android:text="Continuar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.579" />
+
+    <TextView
+        android:id="@+id/txtCodeNotReceived"
+        android:layout_width="228dp"
+        android:layout_height="31dp"
+        android:gravity="center_horizontal"
+        android:text="@string/forgetpassword_codeNotReceived"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.668" />
+</android.support.constraint.ConstraintLayout>

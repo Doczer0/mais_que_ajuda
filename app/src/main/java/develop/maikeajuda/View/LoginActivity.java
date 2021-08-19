@@ -34,6 +34,7 @@ import develop.maikeajuda.R;
 public class LoginActivity extends AppCompatActivity {
     private SessionManager session;
     private EditText textEmail, textPassword;
+    private TextView linkForgetPassword;
     private String email, password;
     private ProgressDialog progressDialog;
     private String URL_LOGIN = AppConfig.URL_LOGIN;
@@ -51,13 +52,13 @@ public class LoginActivity extends AppCompatActivity {
         textPassword =  findViewById(R.id.editText_password);
         Button buttonLogin =  findViewById(R.id.btnLogin);
         TextView linkNewAccount =  findViewById(R.id.text_new_account);
+        linkForgetPassword = findViewById(R.id.text_forget_password);
 
         buttonLogin.setTypeface(font2);
         linkNewAccount.setTypeface(font2);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
-
 
         if (session.isLoggedIn()) {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -91,6 +92,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        linkForgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ForgetPasswordActivity.class);
                 startActivity(intent);
             }
         });
