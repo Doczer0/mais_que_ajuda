@@ -24,27 +24,30 @@ import develop.maikeajuda.Application.AppConfig;
 import develop.maikeajuda.Application.ApplicationControler;
 import develop.maikeajuda.R;
 
-public class ForgetPasswordActivity extends AppCompatActivity {
-    private EditText editTextEmail;
-    private String URL_RECOVEREMAIL = AppConfig.URL_RECOVEREMAIL;
+public class ChangePasswordActivity extends AppCompatActivity {
+    private EditText newPassword;
+    private String URL_CHANGEPASSWORD = AppConfig.URL_CHANGEPASSWORD;
     private final String TAG_jsonObj_LOGIN = "json_obj_login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recover_password);
+        setContentView(R.layout.activity_changepassword);
 
-        editTextEmail = findViewById(R.id.editText_newPassword);
+        newPassword = findViewById(R.id.editText_newPassword);
 
-        Button btnSendRecoverEmail = findViewById(R.id.btn_sendRecoverEmail);
+        Button btnSendRecoverEmail = findViewById(R.id.btnSendPassword);
+
+        String emailRecover = getIntent().getStringExtra("email");
+        String token = getIntent().getStringExtra("token");
 
         btnSendRecoverEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
-                    if(editTextEmail.getText().toString().length() < 1) return;
-                    checkEmail(editTextEmail.getText().toString());
+                    if(newPassword.getText().toString() == "") return;
+                    changePassword(emailRecover, token, newPassword.getText().toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -52,10 +55,12 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         });
     }
 
-    public void checkEmail(String email) throws JSONException {
-        JSONObject emailObj = new JSONObject();
-        emailObj.put("email", email);
-        JsonObjectRequest jsonObjectLoginRequest = new JsonObjectRequest(Request.Method.POST, URL_RECOVEREMAIL, emailObj,
+    private void changePassword(String email, String token, String newPassword) throws JSONException {
+        JSONObject requestObj = new JSONObject();
+        requestObj.put("email", email);
+        requestObj.put("token", token);
+        requestObj.put("password", newPassword);
+        JsonObjectRequest jsonObjectLoginRequest = new JsonObjectRequest(Request.Method.POST, URL_CHANGEPASSWORD, requestObj,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -64,8 +69,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                             if((message.contains("Wrong"))){
 
                             } else {
-                                Intent intent = new Intent(getApplicationContext(), RecoverCodeScreenActivity.class);
-                                intent.putExtra("email", editTextEmail.getText().toString());
+                                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                                 startActivity(intent);
                                 finish();
                             }
@@ -76,9 +80,9 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(ForgetPasswordActivity.this);
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(ChangePasswordActivity.this);
                 alertBuilder.setTitle("Erro");
-                alertBuilder.setMessage("Email inválido");
+                alertBuilder.setMessage("Código Inválido");
                 alertBuilder.show();
             }
         }){

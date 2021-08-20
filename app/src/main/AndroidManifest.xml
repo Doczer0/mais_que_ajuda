@@ -52,6 +52,7 @@
         </activity>
         <activity android:name=".View.RecoverCodeScreenActivity" />
         <activity android:name=".View.ForgetPasswordActivity" />
+        <activity android:name=".View.ChangePasswordActivity" />
     </application>
 
 </manifest>
