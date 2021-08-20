@@ -50,6 +50,9 @@
         <activity android:name=".View.Camera2Activity"
             android:screenOrientation="landscape">
         </activity>
+        <activity android:name=".View.RecoverCodeScreenActivity" />
+        <activity android:name=".View.ForgetPasswordActivity" />
+        <activity android:name=".View.ChangePasswordActivity" />
     </application>
 
 </manifest>

@@ -59,4 +59,13 @@
         android:textAlignment="center"
         android:textSize="12sp" />
 
+    <TextView
+        android:id="@+id/text_forget_password"
+        android:layout_width="346dp"
+        android:layout_height="32dp"
+
+        android:gravity="center_horizontal"
+        android:text="@string/forgetpassword_link"
+        android:textAlignment="center"
+        android:textSize="12sp" />
 </LinearLayout>

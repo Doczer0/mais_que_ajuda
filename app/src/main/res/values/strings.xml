@@ -33,6 +33,7 @@
 
     <string name="login_link">Já possui uma conta? Acesse sua conta.</string>
     <string name="register_link">Ainda não possui conta? Crie uma já agora!</string>
+    <string name="forgetpassword_link">Esqueci Minha  Senha</string>
 
     <string name="demo_text_title">TITULO</string>
     <string name="demo_text_description">DESCRICAO</string>
@@ -61,4 +62,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lacinia gravida ve
     <string name="title_activity_camera">CameraActivity</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="forgetpassword_email">Informe o seu e-mail para continuar</string>
+    <string name="forgetpassword_hint">Endereço de e-mail</string>
+    <string name="forgetpassword_recoverCode">Digite o código de 5 dígitos que enviamos para</string>
+    <string name="forgetpassword_recoverCodeHint">Digite o código que recebeu em seu e-mail</string>
+    <string name="forgetpassword_codeNotReceived">Não recebi meu código</string>
+
+    <string name="forgetpassword_newPassword">Digite sua nova senha</string>
+
 </resources>
