@@ -72,7 +72,7 @@ public class GalleryFragment extends Fragment {
             gallery.setVisibility(View.GONE);
             textGalleryNotify.setVisibility(View.VISIBLE);
             textGalleryNotify.setText("Sem fotos na galeria");
-        } else{
+        } else {
             File[] pictures;
             pictures = file.listFiles();
             adapter = new GalleryAdapter(pictures,getLayoutInflater());

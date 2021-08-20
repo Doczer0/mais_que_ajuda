@@ -11,21 +11,20 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.*;
 
 
+import com.camerakit.CameraKitView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.wonderkiln.camerakit.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -50,8 +49,8 @@ public class Camera2Activity extends AppCompatActivity {
     private ImageButton buttonBack, buttonPicture, buttonFilter;
     private int drawWidth, drawHeight;
     private boolean filterState = true;
-    private String exerciseName, imageLink;
-    private CameraView cameraView;
+    private String exerciseName, imageLink, imageSavedLink;
+    private CameraKitView cameraView;
     private Bitmap filter;
     private Handler handler = new Handler();
     private ImageLoader imageLoader;
@@ -85,12 +84,13 @@ public class Camera2Activity extends AppCompatActivity {
 
 
         cameraView = findViewById(R.id.camera_preview2);
+
         buttonBack = findViewById(R.id.cam2_button_back);
         buttonPicture = findViewById(R.id.cam2_button_photo);
         buttonFilter = findViewById(R.id.cam2_button_filter);
         cameraFilter = new ImageView(getApplicationContext());
         cameraFilter.setDrawingCacheEnabled(true);
-        cameraFilter.setAlpha(180);
+        cameraFilter.setAlpha((float) 0.5);
         cameraFilter.setScaleType(ImageView.ScaleType.FIT_CENTER);
         //cameraView.setPermissions(CameraKit.Constants.PERMISSIONS_PICTURE);
 
@@ -98,43 +98,10 @@ public class Camera2Activity extends AppCompatActivity {
             @Override
             public void run() {
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
-                        (CameraView.LayoutParams.MATCH_PARENT, CameraView.LayoutParams.MATCH_PARENT);
-
+                        (CameraKitView.LayoutParams.MATCH_PARENT, CameraKitView.LayoutParams.MATCH_PARENT);
 
                 addContentView(cameraFilter,params);
                 imageLoader.displayImage(imageLink,cameraFilter);
-
-
-            }
-        });
-
-        cameraView.addCameraKitListener(new CameraKitEventListener() {
-            @Override
-            public void onEvent(CameraKitEvent cameraKitEvent) {
-
-            }
-
-            @Override
-            public void onError(CameraKitError cameraKitError) {
-
-            }
-
-            @Override
-            public void onImage(CameraKitImage cameraKitImage) {
-                final byte[] jpeg = cameraKitImage.getJpeg();
-                Bitmap bitmapPicture = BitmapFactory.decodeByteArray(jpeg, 0, jpeg.length);
-                Bitmap bitmapFilter = cameraFilter.getDrawingCache();
-
-                Bitmap bitmapPreview = bitmapOverlay(bitmapPicture,bitmapFilter, drawWidth, drawHeight);
-                if(filterState){
-                    saveBitmap(bitmapPreview);
-                }else {
-                    saveBitmap(bitmapPicture);
-                }
-            }
-
-            @Override
-            public void onVideo(CameraKitVideo cameraKitVideo) {
 
             }
         });
@@ -149,7 +116,32 @@ public class Camera2Activity extends AppCompatActivity {
         buttonPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cameraView.captureImage();
+
+                cameraView.captureImage(new CameraKitView.ImageCallback() {
+                    @Override
+                    public void onImage(CameraKitView cameraKitView, byte[] bytes) {
+                        Bitmap bitmapPicture = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                        Bitmap bitmapFilter = cameraFilter.getDrawingCache();
+
+                        Bitmap bitmapPreview = bitmapOverlay(bitmapPicture,bitmapFilter, drawWidth, drawHeight);
+
+                        cameraFilter.setImageBitmap(bitmapPreview);
+                        cameraFilter.setAlpha((float) 1.0);
+                        cameraFilter.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
+                        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams
+                                (CameraKitView.LayoutParams.MATCH_PARENT, CameraKitView.LayoutParams.MATCH_PARENT);
+
+                        cameraFilter.setLayoutParams(params);
+
+                        if(filterState){
+                            saveBitmap(bitmapPreview);
+                        }else {
+                            saveBitmap(bitmapPicture);
+                        }
+                    }
+                });
+
             }
         });
 
@@ -187,20 +179,20 @@ public class Camera2Activity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        cameraView.start();
+        cameraView.onResume();
         hideNavigationBar();
     }
 
     @Override
     protected void onPause() {
-        cameraView.stop();
         hideNavigationBar();
         super.onPause();
+        cameraView.onPause();
     }
 
     public Bitmap bitmapOverlay(Bitmap bitmapImage, Bitmap bitmapFilter, int width, int height) {
         Paint paint = new Paint();
-        paint.setAlpha(200);
+        paint.setAlpha(150);
         Rect source = new Rect(0,0,bitmapImage.getWidth(), bitmapImage.getHeight());
         Rect destiny = new Rect(0,0,bitmapImage.getWidth(), bitmapImage.getHeight());
 
@@ -229,6 +221,7 @@ public class Camera2Activity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),getApplicationContext().getFilesDir().toString(),Toast.LENGTH_SHORT).show();
 
             File file = new File(Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY_NAME);
+
             if(!file.mkdir()){
                 File ifile = new File(Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY_NAME + fileName);
                 FileOutputStream outStream = new FileOutputStream(ifile);
@@ -245,7 +238,6 @@ public class Camera2Activity extends AppCompatActivity {
         }
         catch(Exception e){
             //Toast.makeText(getApplicationContext(),"Não foi possivel salvar a foto: "+e.toString(), Toast.LENGTH_SHORT).show();
-            Log.e(TAG, e.toString());
         }
     }
 
@@ -268,12 +260,14 @@ public class Camera2Activity extends AppCompatActivity {
     protected void onStart() {
         hideNavigationBar();
         super.onStart();
+        cameraView.onStart();
     }
 
     @Override
     protected void onStop() {
         hideNavigationBar();
         super.onStop();
+        cameraView.onStop();
     }
 
     @Override
@@ -282,4 +276,9 @@ public class Camera2Activity extends AppCompatActivity {
         super.onWindowFocusChanged(hasFocus);
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        cameraView.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
 }

@@ -1,10 +1,17 @@
 package develop.maikeajuda.View;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -49,6 +56,7 @@ import develop.maikeajuda.Model.Step;
 import develop.maikeajuda.R;
 
 public class ExerciseActivity extends AppCompatActivity {
+    private static final int REQUEST_RUNTIME_PERMISSION = 1;
     private ProgressDialog progressDialog;
     private ViewPager stepsViewPager;
     private Button buttonPhoto;
@@ -58,6 +66,7 @@ public class ExerciseActivity extends AppCompatActivity {
     private String exerciseName, image_url;
     private int count = 0;
     StepAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,12 +138,47 @@ public class ExerciseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent nextActivity = new Intent(getApplicationContext(), Camera2Activity.class);
-                nextActivity.putExtra("exercise_name",exerciseName);
-                nextActivity.putExtra("link",image_url);
-                startActivity(nextActivity);
+                checkPremission();
             }
         });
+    }
+
+    void checkPremission() {
+        final String permission = Manifest.permission.CAMERA;
+        if (ContextCompat.checkSelfPermission(ExerciseActivity.this, permission)
+                != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(ExerciseActivity.this, permission)) {
+
+            } else {
+                ActivityCompat.requestPermissions(ExerciseActivity.this, new String[]{android.Manifest.permission.CAMERA,android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_RUNTIME_PERMISSION);
+            }
+        } else {
+            Intent nextActivity = new Intent(getApplicationContext(), Camera2Activity.class);
+            nextActivity.putExtra("exercise_name",exerciseName);
+            nextActivity.putExtra("link",image_url);
+            startActivity(nextActivity);;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_RUNTIME_PERMISSION:
+                final int numOfRequest = grantResults.length;
+                final boolean isGranted = numOfRequest == 1
+                        && PackageManager.PERMISSION_GRANTED == grantResults[numOfRequest - 1];
+                if (isGranted) {
+                    Intent nextActivity = new Intent(getApplicationContext(), Camera2Activity.class);
+                    nextActivity.putExtra("exercise_name",exerciseName);
+                    nextActivity.putExtra("link",image_url);
+                    startActivity(nextActivity);
+                }else{
+
+                }
+                break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 
     private void loadExercise(final int id) {
