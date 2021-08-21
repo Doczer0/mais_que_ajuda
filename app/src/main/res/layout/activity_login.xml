@@ -48,21 +48,21 @@
 
     <TextView
         android:id="@+id/text_new_account"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="328dp"
+        android:layout_height="27dp"
 
+        android:gravity="center_horizontal"
         android:text="@string/register_link"
+        android:layout_marginBottom="10dp"
         android:textAlignment="center"
         android:textSize="12sp" />
 
     <TextView
         android:id="@+id/text_forget_password"
-        android:layout_width="346dp"
-        android:layout_height="32dp"
-
+        android:layout_width="327dp"
+        android:layout_height="45dp"
         android:gravity="center_horizontal"
         android:text="@string/forgetpassword_link"
-        android:textAlignment="center"
         android:textSize="12sp" />
 
 </LinearLayout>
