@@ -33,7 +33,7 @@
 
     <string name="login_link">Já possui uma conta? Acesse sua conta.</string>
     <string name="register_link">Ainda não possui conta? Crie uma já agora!</string>
-    <string name="forgetpassword_link">Esqueci Minha  Senha</string>
+    <string name="forgetpassword_link">Esqueci minha  senha</string>
 
     <string name="demo_text_title">TITULO</string>
     <string name="demo_text_description">DESCRICAO</string>

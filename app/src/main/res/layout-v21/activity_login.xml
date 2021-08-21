@@ -56,6 +56,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/source_sans_pro"
         android:text="@string/register_link"
+        android:layout_marginBottom="10dp"
         android:textAlignment="center"
         android:textSize="12sp" />
 

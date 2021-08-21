@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -69,6 +71,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                             if((message.contains("Wrong"))){
 
                             } else {
+                                showToast("Sua senha foi redefinida com sucesso!");
                                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                                 startActivity(intent);
                                 finish();
@@ -95,5 +98,12 @@ public class ChangePasswordActivity extends AppCompatActivity {
             }
         };
         ApplicationControler.getInstance().addToRequestQueue(jsonObjectLoginRequest,TAG_jsonObj_LOGIN);
+    }
+
+    public void showToast(String message){
+        Toast notify;
+        notify = Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG);
+        notify.setGravity(Gravity.CENTER,0,0);
+        notify.show();
     }
 }
